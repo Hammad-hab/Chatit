@@ -40,7 +40,7 @@
     })
     setInterval(() => {
       $.ajax({
-        url: 'DB2.json',
+        url: 'https://github.com/Hammad-hab/Json/DB2.json',
         success: function (data) {
           if (data.data.Message2) {
           $('#body2').html("<p><b>User 2:  </b>" + data.data.Message2 + "</p>")
