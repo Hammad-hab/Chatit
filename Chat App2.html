@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <input type="" name="" id="Message">
+  <select name="" id="select">
+    <option>User 1</option>
+    <option>User 2</option>
+  </select>
+  <div id="body">
+
+  </div>
+  <div id="body2">
+
+  </div>
+  <script>
+    $('#Message').change(function () {
+
+      var Value = $(this).val();
+      var User = $('#select').val()
+       
+      $('#body').html("<p><b><a href='#'>You</a>:  </b>" + Value + "</p>")
+      $.ajax({
+        url: 'OverWrite.php?TheValue=' + Value,
+        type: "GET",
+        success: function (data) {
+          console.log("Request Successful")
+        },
+        error: function () {
+          console.log("Request wasn't succesful")
+        }
+      })
+    })
+    setInterval(() => {
+      $.ajax({
+        url: 'DB2.json',
+        success: function (data) {
+          if (data.data.Message2) {
+          $('#body2').html("<p><b>User 2:  </b>" + data.data.Message2 + "</p>")
+          }
+        }
+      })
+    }, 3000);
+  </script>
+</body>
+
+</html>
